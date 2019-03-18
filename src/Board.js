@@ -53,11 +53,10 @@ export default class Board extends React.Component {
   }
   renderSwimlane(name, clients, value, ref) {
     return (
-      <Swimlane name={name} clients={clients} dragulaRef={ref} value={value} />
+      <Swimlane name={name} clients={clients} value={value} dragulaRef={ref} />
     );
   }
   render() {
-    console.log(this.swimlanes.backlog.current);
     return (
       <div className="Board">
         <div className="container-fluid">
@@ -90,6 +89,6 @@ export default class Board extends React.Component {
   }
   dragulaReference = (componentBackingInstance) => {
     this.drake.containers.push(componentBackingInstance);
-    this.drake.on("drop", (el, target, source, sibling) => this.changeStatus(el, target.previousSibling.innerHTML));
+    this.drake.on("drop", (el, target) => this.changeStatus(el, target.previousSibling.innerHTML));
   }
 }
